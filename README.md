@@ -2,10 +2,10 @@
 
 ## 技术选型
 - Vue3.2 + Vite + TypeScript
-- composition API
+- Composition Api
 - Element Plus
 - Pinia
-- ESLint + Prettier + Commitlint
+- ESLint + Prettier + Commitlint + Commitizen
 
 ## Project Setup
 
