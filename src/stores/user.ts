@@ -2,6 +2,8 @@ import { login } from "@/api/system";
 import { defineStore } from "pinia";
 import md5 from "md5";
 import { ref } from "vue";
+import { getItem, setItem } from "@/utils/storage";
+import { TOKEN } from "@/constants";
 
 interface IUserInfo {
   username: string;
@@ -9,30 +11,34 @@ interface IUserInfo {
 }
 
 export const useUserStore = defineStore("userStore", () => {
-  const userInfo = ref<IUserInfo>({
-    username: "",
-    password: "",
-  });
+  const token = ref<string>(getItem(TOKEN) || "");
 
-  function loginAction(userInfo: IUserInfo) {
+  const loginAction = (userInfo: IUserInfo) => {
     const { username, password } = userInfo;
     return new Promise<void>((resolve, reject) => {
       login({
         username,
         password: md5(password),
       })
-        .then(() => {
+        .then((data) => {
+          setToken(data.token);
           resolve();
         })
         .catch((error) => {
           reject(error);
         });
     });
-  }
+  };
+
+  const setToken = (tokenValue: string) => {
+    token.value = tokenValue;
+    setItem(TOKEN, tokenValue);
+  };
 
   return {
-    userInfo,
+    token,
     loginAction,
+    setToken,
   };
 
   // state: () => ({

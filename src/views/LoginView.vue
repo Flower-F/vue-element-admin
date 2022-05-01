@@ -34,7 +34,6 @@ const loginFormRef = ref<any>(null);
 
 const handleLogin = () => {
   // 表单校验
-  console.log(loginFormRef.value);
   loginFormRef.value.validate((valid: boolean) => {
     if (!valid) {
       return;
