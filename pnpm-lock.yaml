@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': ^16.2.4
   '@commitlint/config-conventional': ^16.2.4
+  '@element-plus/icons-vue': ^1.1.4
   '@rushstack/eslint-patch': ^1.1.0
   '@types/jsdom': ^16.2.14
   '@types/node': ^16.11.27
@@ -30,6 +31,7 @@ specifiers:
   vue-tsc: ^0.34.7
 
 dependencies:
+  '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/1.1.4_vue@3.2.33
   element-plus: registry.npmmirror.com/element-plus/2.1.11_vue@3.2.33
   pinia: registry.npmmirror.com/pinia/2.0.13_ytvqwwdyss532bvoq2clv4ed5m
   vue: registry.npmmirror.com/vue/3.2.33
