@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {} from "vue";
-import { Avatar } from "@element-plus/icons-vue";
+import SvgIcon from "../components/SvgIcon.vue";
 </script>
 
 <template>
@@ -12,9 +12,7 @@ import { Avatar } from "@element-plus/icons-vue";
       <!-- 用户名 -->
       <el-form-item>
         <span class="svg-container">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <svg-icon icon="user"></svg-icon>
         </span>
         <el-input placeholder="请输入您的用户名" name="username" type="text" />
       </el-form-item>
@@ -22,9 +20,7 @@ import { Avatar } from "@element-plus/icons-vue";
       <!-- 密码 -->
       <el-form-item>
         <span class="svg-container">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <svg-icon icon="password" />
         </span>
         <el-input
           placeholder="请输入您的密码"
@@ -32,9 +28,7 @@ import { Avatar } from "@element-plus/icons-vue";
           type="password"
         />
         <span class="show-password">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <svg-icon icon="eye"></svg-icon>
         </span>
       </el-form-item>
 
