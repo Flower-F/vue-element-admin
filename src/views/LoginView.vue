@@ -1,24 +1,85 @@
 <script setup lang="ts">
-import {} from "vue";
+import { useUserStore } from "@/stores/user";
+import { validatePassword } from "@/utils/loginRules";
+import { ref } from "vue";
 import SvgIcon from "../components/SvgIcon.vue";
+
+const loginForm = ref({
+  username: "super-admin",
+  password: "123456",
+});
+
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: "blur",
+      message: "用户名为必填项",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      trigger: "blur",
+      validator: validatePassword(),
+    },
+  ],
+});
+
+const loading = ref(false);
+const store = useUserStore();
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const loginFormRef = ref<any>(null);
+
+const handleLogin = () => {
+  // 表单校验
+  console.log(loginFormRef.value);
+  loginFormRef.value.validate((valid: boolean) => {
+    if (!valid) {
+      return;
+    }
+  });
+  // 触发登录动作
+  loading.value = true;
+  // 进行登录后续处理
+  store
+    .loginAction(loginForm.value)
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      loading.value = false;
+    });
+};
 </script>
 
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form
+      class="login-form"
+      ref="loginFormRef"
+      :model="loginForm"
+      :rules="loginRules"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
       <!-- 用户名 -->
-      <el-form-item>
+      <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon="user"></svg-icon>
         </span>
-        <el-input placeholder="请输入您的用户名" name="username" type="text" />
+        <el-input
+          placeholder="请输入您的用户名"
+          name="username"
+          type="text"
+          v-model="loginForm.username"
+        />
       </el-form-item>
 
       <!-- 密码 -->
-      <el-form-item>
+      <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
@@ -26,13 +87,16 @@ import SvgIcon from "../components/SvgIcon.vue";
           placeholder="请输入您的密码"
           name="password"
           type="password"
+          v-model="loginForm.password"
         />
         <span class="show-password">
           <svg-icon icon="eye"></svg-icon>
         </span>
       </el-form-item>
 
-      <el-button type="primary" class="login-button">登录</el-button>
+      <el-button type="primary" class="login-button" @click="handleLogin"
+        >登录</el-button
+      >
     </el-form>
   </div>
 </template>
@@ -115,6 +179,7 @@ $cursor: #fff;
   }
   .login-button {
     width: 100%;
+    margin-top: 5px;
   }
 }
 </style>

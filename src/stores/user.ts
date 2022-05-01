@@ -14,8 +14,8 @@ export const useUserStore = defineStore("userStore", () => {
     password: "",
   });
 
-  function loginAction() {
-    const { username, password } = userInfo.value;
+  function loginAction(userInfo: IUserInfo) {
+    const { username, password } = userInfo;
     return new Promise<void>((resolve, reject) => {
       login({
         username,
