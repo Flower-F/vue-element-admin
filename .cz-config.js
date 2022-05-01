@@ -31,6 +31,6 @@ module.exports = {
     footer: "请输入要关闭的 issue:(可选)",
     confirmCommit: "确认使用以上信息提交吗?(y/n)",
   },
-  skipQuestions: ["body", "footer"],
+  skipQuestions: ["body", "customScope", "footer"],
   subjectLimit: 100,
 };
