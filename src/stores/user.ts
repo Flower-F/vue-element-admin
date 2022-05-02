@@ -2,8 +2,9 @@ import { getUserInfo, login } from "@/api/system";
 import { defineStore } from "pinia";
 import md5 from "md5";
 import { ref } from "vue";
-import { getItem, setItem } from "@/utils/storage";
+import { getItem, removeAllItem, setItem } from "@/utils/storage";
 import { TOKEN } from "@/constants";
+import router from "@/router";
 
 interface IUserInfo {
   username: string;
@@ -32,6 +33,13 @@ export const useUserStore = defineStore("userStore", () => {
     });
   };
 
+  const logoutAction = () => {
+    setUserInfo(null);
+    setToken("");
+    removeAllItem();
+    router.push("/login");
+  };
+
   const setToken = (tokenValue: string) => {
     token.value = tokenValue;
     setItem(TOKEN, tokenValue);
@@ -41,7 +49,7 @@ export const useUserStore = defineStore("userStore", () => {
     return token.value;
   };
 
-  const setUserInfo = (userInfoValue: IUserInfo) => {
+  const setUserInfo = (userInfoValue: IUserInfo | null) => {
     userInfo.value = userInfoValue;
   };
 
@@ -63,5 +71,6 @@ export const useUserStore = defineStore("userStore", () => {
     setUserInfo,
     hasUserInfo,
     userInfo,
+    logoutAction,
   };
 });

@@ -3,6 +3,10 @@ import {} from "vue";
 import { useUserStore } from "../../stores/user";
 
 const store = useUserStore();
+
+const logout = () => {
+  store.logoutAction();
+};
 </script>
 
 <template>
@@ -20,7 +24,9 @@ const store = useUserStore();
             <router-link to="/">
               <el-dropdown-item>主页</el-dropdown-item>
             </router-link>
-            <el-dropdown-item divided>退出登录</el-dropdown-item>
+            <el-dropdown-item divided @click="logout"
+              >退出登录</el-dropdown-item
+            >
           </el-dropdown-menu>
         </template>
       </el-dropdown>
