@@ -7,6 +7,7 @@ import SvgIcon from "../components/SvgIcon.vue";
 const loginForm = ref({
   username: "super-admin",
   password: "123456",
+  avatar: "",
 });
 
 const loginRules = ref({

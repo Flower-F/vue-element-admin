@@ -6,14 +6,17 @@ const whiteList = ["/login"];
 
 // 路由前置守卫
 router.beforeEach(async (to, from, next) => {
-  if (useUserStore().getToken() !== "") {
+  const store = useUserStore();
+
+  if (store.getToken() !== "") {
     // 用户已登录，不允许进入 login
     if (to.path === "/login") {
       next("/");
     } else {
       // 判断用户信息是否存在
-      if (!useUserStore().hasUserInfo()) {
-        await useUserStore().getUserInfoAction();
+      if (!store.hasUserInfo()) {
+        const result = await store.getUserInfoAction();
+        store.setUserInfo(result);
       }
       next();
     }

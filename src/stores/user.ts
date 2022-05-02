@@ -8,6 +8,7 @@ import { TOKEN } from "@/constants";
 interface IUserInfo {
   username: string;
   password: string;
+  avatar: string;
 }
 
 export const useUserStore = defineStore("userStore", () => {
@@ -61,5 +62,6 @@ export const useUserStore = defineStore("userStore", () => {
     getUserInfoAction,
     setUserInfo,
     hasUserInfo,
+    userInfo,
   };
 });
