@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import MyLayout from "@/layout/MyLayout.vue";
+import BasicLayout from "@/layout/BasicLayout.vue";
 </script>
 
 <template>
   <div>
-    <my-layout />
+    <basic-layout />
   </div>
 </template>

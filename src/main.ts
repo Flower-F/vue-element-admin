@@ -5,6 +5,8 @@ import App from "./App.vue";
 import router from "./router";
 
 import ElementPlus from "element-plus";
+import * as ElementPlusIconsVue from "@element-plus/icons-vue";
+
 import "normalize.css";
 import "./styles/index.scss";
 import "virtual:svg-icons-register";
