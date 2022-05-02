@@ -16,6 +16,7 @@
     "element-plus": "^2.1.11",
     "md5": "^2.3.0",
     "normalize.css": "^8.0.1",
+    "path-browserify": "^1.0.1",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
@@ -27,6 +28,7 @@
     "@types/jsdom": "^16.2.14",
     "@types/md5": "^2.3.2",
     "@types/node": "^16.11.27",
+    "@types/path-browserify": "^1.0.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",

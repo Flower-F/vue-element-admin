@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import {} from "vue";
+import { computed } from "vue";
 import { Location as LocationIcon } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
+import { filterRoutes, generateMenus } from "@/utils/route";
 
 const router = useRouter();
-console.log(router.getRoutes());
+const routes = computed(() => {
+  const filterResult = filterRoutes(router.getRoutes());
+  return generateMenus(filterResult);
+});
+
+console.log(routes.value);
 </script>
 
 <template>
