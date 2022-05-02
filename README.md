@@ -8,7 +8,7 @@
 - ESLint + Prettier + Commitlint + Commitizen
 
 ## 模块
-- 登录模块 ✔️
+- 登录 ✔️
 - 退出登录 ✔️
   - 用户主动退出 ✔️
   - 用户被动退出 ✔️
