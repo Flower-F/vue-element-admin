@@ -35,10 +35,15 @@ export const useUserStore = defineStore("userStore", () => {
     setItem(TOKEN, tokenValue);
   };
 
+  const getToken = () => {
+    return token.value;
+  };
+
   return {
     token,
     loginAction,
     setToken,
+    getToken,
   };
 
   // state: () => ({

@@ -11,6 +11,9 @@ import "virtual:svg-icons-register";
 
 import SvgIcon from "./components/SvgIcon.vue";
 
+// 路由守卫
+import "./permission";
+
 const app = createApp(App);
 
 app.component("svg-icon", SvgIcon);
