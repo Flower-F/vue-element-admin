@@ -1,18 +1,22 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHashHistory,
+  type RouteRecordRaw,
+} from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import Layout from "@/layout/BasicLayout.vue";
 import { User } from "@element-plus/icons-vue";
 
-// 公开路由表，人人都可以访问
-const publicRoutes = [
+// 公开路由表
+const publicRoutes: RouteRecordRaw[] = [
   {
     path: "/",
     redirect: "profile",
-    name: "home",
+    name: "Home",
     children: [
       {
         path: "/profile",
-        name: "profile",
+        name: "Profile",
         component: () => import("../views/ProfileView.vue"),
         meta: {
           title: "profile",
@@ -21,12 +25,12 @@ const publicRoutes = [
       },
       {
         path: "/404",
-        name: "404",
+        name: "Error",
         component: () => import("../views/ErrorView.vue"),
       },
       {
         path: "/401",
-        name: "401",
+        name: "Forbidden",
         component: () => import("../views/ForbiddenView.vue"),
       },
     ],
@@ -34,16 +38,16 @@ const publicRoutes = [
   },
   {
     path: "/login",
-    name: "login",
+    name: "Login",
     component: () => import("../views/LoginView.vue"),
   },
 ];
 
 // 私有路由表
-const privateRoutes = [
+const privateRoutes: RouteRecordRaw[] = [
   {
     path: "/user",
-    name: "user",
+    name: "User",
     redirect: "user/manager",
     component: Layout,
     meta: {
@@ -53,7 +57,7 @@ const privateRoutes = [
     children: [
       {
         path: "/user/manage",
-        name: "userManage",
+        name: "UserManage",
         component: () => import("../views/UserManageView.vue"),
         meta: {
           title: "userManage",
@@ -62,7 +66,7 @@ const privateRoutes = [
       },
       {
         path: "/user/role",
-        name: "userRole",
+        name: "UserRole",
         component: () => import("../views/RoleListView.vue"),
         meta: {
           title: "roleList",
@@ -71,7 +75,7 @@ const privateRoutes = [
       },
       {
         path: "/user/userPermission",
-        name: "permission",
+        name: "Permission",
         component: () => import("../views/PermissionListView.vue"),
         meta: {
           title: "permissionList",
@@ -80,7 +84,7 @@ const privateRoutes = [
       },
       {
         path: "/user/info/:id",
-        name: "userInfo",
+        name: "UserInfo",
         component: () => import("../views/UserInfoView.vue"),
         meta: {
           title: "userInfo",
@@ -88,7 +92,7 @@ const privateRoutes = [
       },
       {
         path: "/user/import",
-        name: "import",
+        name: "Import",
         component: () => import("../views/UserInfoView.vue"),
         meta: {
           title: "excelImport",
@@ -98,6 +102,7 @@ const privateRoutes = [
   },
   {
     path: "/article",
+    name: "Article",
     component: Layout,
     redirect: "/article/ranking",
     meta: {
@@ -107,7 +112,7 @@ const privateRoutes = [
     children: [
       {
         path: "/article/ranking",
-        name: "articleRanking",
+        name: "ArticleRanking",
         component: () => import("@/views/ArticleRankingView.vue"),
         meta: {
           title: "articleRanking",
@@ -116,7 +121,7 @@ const privateRoutes = [
       },
       {
         path: "/article/:id",
-        name: "articleDetail",
+        name: "ArticleDetail",
         component: () => import("@/views/ArticleDetailView.vue"),
         meta: {
           title: "articleDetail",
@@ -124,7 +129,7 @@ const privateRoutes = [
       },
       {
         path: "/article/create",
-        name: "articleCreate",
+        name: "ArticleCreate",
         component: () => import("@/views/ArticleCreateView.vue"),
         meta: {
           title: "articleCreate",
@@ -133,7 +138,7 @@ const privateRoutes = [
       },
       {
         path: "/article/editor/:id",
-        name: "articleEditor",
+        name: "ArticleEditor",
         component: () => import("@/views/ArticleEditorView.vue"),
         meta: {
           title: "articleEditor",

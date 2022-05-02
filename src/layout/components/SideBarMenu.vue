@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import {} from "vue";
 import { Location as LocationIcon } from "@element-plus/icons-vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+console.log(router.getRoutes());
 </script>
 
 <template>
