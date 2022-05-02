@@ -41,20 +41,19 @@ export const generateMenus = (routes: RouteRecordRaw[] = [], basePath = "") => {
       return;
     }
 
-    // 存在 children，但是不存在 meta
+    // 存在 children，但是不存在 meta，将其 children 递归添加入 result 中
     if (!isNull(item.children) && isNull(item.meta)) {
       result.push(...generateMenus(item.children));
       return;
     }
 
-    // 不存在 children，但是存在 meta
+    // 不存在 children，但是存在 meta，说明可能满足条件
     const routePath = path.resolve(basePath, item.path);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const route: any = {
+    const route = {
       ...item,
       path: routePath,
-      children: [],
+      children: new Array<RouteRecordRaw>(),
     };
 
     // 必须同时存在 icon 和 title
