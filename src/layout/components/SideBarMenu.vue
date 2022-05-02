@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Location as LocationIcon } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 import { filterRoutes, generateMenus } from "@/utils/route";
+import SideBarItem from "./SideBarItem.vue";
 
 const router = useRouter();
 const routes = computed(() => {
   const filterResult = filterRoutes(router.getRoutes());
   return generateMenus(filterResult);
 });
-
-console.log(routes.value);
 </script>
 
 <template>
@@ -20,18 +18,11 @@ console.log(routes.value);
     text-color="#fff"
     active-text-color="#ffd046"
   >
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon><location-icon /></el-icon>
-        <span>导航一</span>
-      </template>
-      <el-menu-item index="1-1">选项 1</el-menu-item>
-      <el-menu-item index="1-2">选项 2</el-menu-item>
-    </el-sub-menu>
-    <el-menu-item index="2">
-      <el-icon><location-icon /></el-icon>
-      <template #title>导航 4</template>
-    </el-menu-item>
+    <side-bar-item
+      v-for="item in routes"
+      :key="item.path"
+      :route="item"
+    ></side-bar-item>
   </el-menu>
 </template>
 

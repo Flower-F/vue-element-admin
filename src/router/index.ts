@@ -5,7 +5,6 @@ import {
 } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import Layout from "@/layout/BasicLayout.vue";
-import { User } from "@element-plus/icons-vue";
 
 // 公开路由表
 const publicRoutes: RouteRecordRaw[] = [
@@ -20,7 +19,7 @@ const publicRoutes: RouteRecordRaw[] = [
         component: () => import("../views/ProfileView.vue"),
         meta: {
           title: "profile",
-          icon: User,
+          icon: "user",
         },
       },
       {
