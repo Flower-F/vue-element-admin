@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import { filterRoutes, generateMenus } from "@/utils/route";
 import SideBarItem from "./SideBarItem.vue";
 import { useVariablesStore } from "@/stores/variables";
+import { useSidebarStore } from "@/stores/sidebar";
 
 const router = useRouter();
 const routes = computed(() => {
@@ -11,20 +12,23 @@ const routes = computed(() => {
   return generateMenus(filterResult);
 });
 
-const store = useVariablesStore();
+const variables = useVariablesStore().getVariables();
 
 // 默认激活的路由项
 const route = useRoute();
 const activeMenu = computed(() => route.path);
+
+const sidebarStore = useSidebarStore();
 </script>
 
 <template>
   <el-menu
+    :collapse="!sidebarStore.isOpened()"
     :default-active="activeMenu"
     :uniqueOpened="true"
-    :background-color="store.getVariables().menuBg"
-    :text-color="store.getVariables().menuText"
-    :active-text-color="store.getVariables().menuActiveText"
+    :background-color="variables.menuBg"
+    :text-color="variables.menuText"
+    :active-text-color="variables.menuActiveText"
     router
   >
     <side-bar-item v-for="item in routes" :key="item.path" :route="item" />

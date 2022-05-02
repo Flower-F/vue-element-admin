@@ -2,6 +2,7 @@
 import {} from "vue";
 import { useUserStore } from "../../stores/user";
 import { Tools } from "@element-plus/icons-vue";
+import HamburgerButton from "../../components/HamburgerButton.vue";
 
 const store = useUserStore();
 
@@ -12,6 +13,8 @@ const logout = () => {
 
 <template>
   <div class="navbar">
+    <!-- 汉堡 -->
+    <hamburger-button class="hamburger-button" />
     <div class="right-menu">
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -42,6 +45,18 @@ const logout = () => {
   position: relative;
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  .hamburger-button {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    transition: background 0.5s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 
   .right-menu {
     display: flex;

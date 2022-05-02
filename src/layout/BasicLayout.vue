@@ -3,15 +3,20 @@ import NavBar from "./components/NavBar.vue";
 import MainContent from "./components/MainContent.vue";
 import SideBar from "./components/SideBar.vue";
 import variables from "@/styles/variables.module.scss";
-import {} from "vue";
+import { useSidebarStore } from "@/stores/sidebar";
+
+const store = useSidebarStore();
 </script>
 
 <template>
-  <div class="app-container">
+  <div
+    class="app-container"
+    :class="store.isOpened() ? 'openSidebar' : 'hideSidebar'"
+  >
     <side-bar
       class="sidebar-container"
       :style="{ backgroundColor: variables.menuBg }"
-    ></side-bar>
+    />
     <div class="main-container">
       <div class="fixed-header">
         <nav-bar />
@@ -38,5 +43,10 @@ import {} from "vue";
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
+  transition: width $sideBarDuration;
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>
