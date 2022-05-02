@@ -5,12 +5,16 @@ import { useUserStore } from "@/stores/user";
 const whiteList = ["/login"];
 
 // 路由前置守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (useUserStore().getToken() !== "") {
     // 用户已登录，不允许进入 login
     if (to.path === "/login") {
       next("/");
     } else {
+      // 判断用户信息是否存在
+      if (!useUserStore().hasUserInfo()) {
+        await useUserStore().getUserInfoAction();
+      }
       next();
     }
   } else {

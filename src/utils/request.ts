@@ -1,3 +1,4 @@
+import { useUserStore } from "@/stores/user";
 import axios from "axios";
 import { ElMessage } from "element-plus";
 
@@ -6,6 +7,7 @@ const axiosInstance = axios.create({
   timeout: 6000,
 });
 
+// 响应拦截器
 axiosInstance.interceptors.response.use(
   (response) => {
     const { success, data, message } = response.data;
@@ -16,6 +18,22 @@ axiosInstance.interceptors.response.use(
       ElMessage.error(message);
       return Promise.reject(new Error(message));
     }
+  },
+  (error) => {
+    // 请求失败
+    ElMessage.error(error);
+    return Promise.reject(new Error(error));
+  }
+);
+
+// 请求拦截器
+axiosInstance.interceptors.request.use(
+  (config) => {
+    // 注入 token
+    if (useUserStore().getToken() !== "" && config.headers) {
+      config.headers.Authorization = `Bearer ${useUserStore().getToken()}`;
+    }
+    return config;
   },
   (error) => {
     // 请求失败

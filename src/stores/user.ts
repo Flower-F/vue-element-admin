@@ -1,4 +1,4 @@
-import { login } from "@/api/system";
+import { getUserInfo, login } from "@/api/system";
 import { defineStore } from "pinia";
 import md5 from "md5";
 import { ref } from "vue";
@@ -12,6 +12,7 @@ interface IUserInfo {
 
 export const useUserStore = defineStore("userStore", () => {
   const token = ref<string>(getItem(TOKEN) || "");
+  const userInfo = ref<IUserInfo | null>(null);
 
   const loginAction = (userInfo: IUserInfo) => {
     const { username, password } = userInfo;
@@ -39,35 +40,26 @@ export const useUserStore = defineStore("userStore", () => {
     return token.value;
   };
 
+  const setUserInfo = (userInfoValue: IUserInfo) => {
+    userInfo.value = userInfoValue;
+  };
+
+  const getUserInfoAction = async () => {
+    const result = await getUserInfo();
+    return result;
+  };
+
+  const hasUserInfo = () => {
+    return userInfo.value !== null;
+  };
+
   return {
     token,
     loginAction,
     setToken,
     getToken,
+    getUserInfoAction,
+    setUserInfo,
+    hasUserInfo,
   };
-
-  // state: () => ({
-  //   // counter: 0,
-  //   userInfo: {
-  //     username: "",
-  //     password: "",
-  //   },
-  // }),
-  // actions: {
-  //   login() {
-  //     const { username, password } = this.userInfo;
-  //     return new Promise<void>((resolve, reject) => {
-  //       login({
-  //         username,
-  //         password: md5(password),
-  //       })
-  //         .then(() => {
-  //           resolve();
-  //         })
-  //         .catch((error) => {
-  //           reject(error);
-  //         });
-  //     });
-  //   },
-  // },
 });

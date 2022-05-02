@@ -8,3 +8,10 @@ export const login = (data: unknown) => {
     data,
   });
 };
+
+// 获取用户信息
+export const getUserInfo = () => {
+  return request({
+    url: "/profile",
+  });
+};
