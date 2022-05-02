@@ -1,6 +1,7 @@
 import { useUserStore } from "@/stores/user";
 import axios from "axios";
 import { ElMessage } from "element-plus";
+import { isTimeout } from "./auth";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -29,9 +30,17 @@ axiosInstance.interceptors.response.use(
 // 请求拦截器
 axiosInstance.interceptors.request.use(
   (config) => {
+    const store = useUserStore();
     // 注入 token
-    if (useUserStore().getToken() !== "" && config.headers) {
-      config.headers.Authorization = `Bearer ${useUserStore().getToken()}`;
+    if (store.getToken() !== "") {
+      if (isTimeout()) {
+        store.logoutAction();
+        ElMessage.error("token 已失效");
+        return Promise.reject(new Error("token 已失效"));
+      }
+      if (config.headers) {
+        config.headers.Authorization = `Bearer ${store.getToken()}`;
+      }
     }
     return config;
   },

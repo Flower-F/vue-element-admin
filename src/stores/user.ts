@@ -5,6 +5,7 @@ import { ref } from "vue";
 import { getItem, removeAllItem, setItem } from "@/utils/storage";
 import { TOKEN } from "@/constants";
 import router from "@/router";
+import { setTimeStamp } from "@/utils/auth";
 
 interface IUserInfo {
   username: string;
@@ -25,6 +26,8 @@ export const useUserStore = defineStore("userStore", () => {
       })
         .then((data) => {
           setToken(data.token);
+          setTimeStamp();
+          router.push("/");
           resolve();
         })
         .catch((error) => {
