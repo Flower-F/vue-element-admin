@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {} from "vue";
 import { useUserStore } from "../../stores/user";
+import { Tools } from "@element-plus/icons-vue";
 
 const store = useUserStore();
 
@@ -17,16 +18,16 @@ const logout = () => {
         <div class="avatar-wrapper">
           <el-avatar shape="square" :size="40" :src="store.userInfo?.avatar">
           </el-avatar>
-          <i class="el-icon-s-tools"></i>
+          <el-icon><tools /></el-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
               <el-dropdown-item>主页</el-dropdown-item>
             </router-link>
-            <el-dropdown-item divided @click="logout"
-              >退出登录</el-dropdown-item
-            >
+            <el-dropdown-item divided @click="logout">
+              退出登录
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
