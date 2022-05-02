@@ -7,6 +7,9 @@
 - Pinia
 - ESLint + Prettier + Commitlint + Commitizen
 
+## 模块
+- 登录模块 ✔️
+
 ## Project Setup
 
 ```sh

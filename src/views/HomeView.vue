@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MyLayout from "@/layout/MyLayout.vue";
+</script>
 
 <template>
-  <div>hello world</div>
+  <div>
+    <my-layout />
+  </div>
 </template>
