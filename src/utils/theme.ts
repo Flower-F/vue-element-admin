@@ -2,8 +2,9 @@ import formula from "@/constants/formula";
 import rgbHex from "rgb-hex";
 import cssColorFunction from "css-color-function";
 import axios from "axios";
+import { useVariablesStore } from "@/stores/variables";
 
-const generateColors = (primaryColor: string) => {
+export const generateColors = (primaryColor: string | null) => {
   if (!primaryColor) {
     return;
   }
@@ -47,7 +48,7 @@ const getStyleTemplate = (data: string) => {
   return data;
 };
 
-export const getOriginalStyle = async () => {
+const getOriginalStyle = async () => {
   // https://unpkg.com/element-plus@2.1.11/dist/index.css
   const version = "2.1.11";
   const url = `https://unpkg.com/element-plus@${version}/dist/index.css`;
@@ -61,6 +62,13 @@ export const generateNewStyles = async (primaryColor: string) => {
   // 根据主色获取色值表
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const colors = generateColors(primaryColor)!;
+
+  const variablesStore = useVariablesStore();
+  console.log("variablesStore.getVariables()", variablesStore.getVariables());
+  console.log("colors", colors);
+  console.log("ans", { ...variablesStore.getVariables(), ...colors });
+  variablesStore.setVariables({ ...variablesStore.getVariables(), ...colors });
+
   // 获取当前 Element Plus 的默认样式表，并且将需要替换的色值打上标记
   let cssText = await getOriginalStyle();
   // 遍历色值表，在默认样式表进行全局替换

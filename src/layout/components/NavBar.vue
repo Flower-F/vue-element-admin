@@ -82,6 +82,7 @@ const logout = () => {
         margin-top: 5px;
         position: relative;
         .el-avatar {
+          --el-avatar-bg-color: none;
           margin-right: 12px;
         }
       }

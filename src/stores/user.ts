@@ -43,17 +43,15 @@ export const useUserStore = defineStore("userStore", () => {
     router.push("/login");
   };
 
-  const setToken = (tokenValue: string) => {
-    token.value = tokenValue;
-    setItem(TOKEN, tokenValue);
+  const setToken = (newToken: string) => {
+    token.value = newToken;
+    setItem(TOKEN, newToken);
   };
 
-  const getToken = () => {
-    return token.value;
-  };
+  const getToken = () => token.value;
 
-  const setUserInfo = (userInfoValue: IUserInfo | null) => {
-    userInfo.value = userInfoValue;
+  const setUserInfo = (newUserInfo: IUserInfo | null) => {
+    userInfo.value = newUserInfo;
   };
 
   const getUserInfoAction = async () => {
@@ -61,9 +59,7 @@ export const useUserStore = defineStore("userStore", () => {
     return result;
   };
 
-  const hasUserInfo = () => {
-    return userInfo.value !== null;
-  };
+  const hasUserInfo = () => userInfo.value !== null;
 
   return {
     token,

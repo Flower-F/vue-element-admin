@@ -8,9 +8,7 @@ export const useSidebarStore = defineStore("sidebarStore", () => {
     sidebarOpen.value = !sidebarOpen.value;
   };
 
-  const isOpened = () => {
-    return sidebarOpen.value;
-  };
+  const isOpened = () => sidebarOpen.value;
 
   return {
     toggleSidebarOpened,

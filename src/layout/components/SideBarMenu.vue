@@ -12,7 +12,7 @@ const routes = computed(() => {
   return generateMenus(filterResult);
 });
 
-const variables = useVariablesStore().getVariables();
+const variables = useVariablesStore();
 
 // 默认激活的路由项
 const route = useRoute();
@@ -26,9 +26,9 @@ const sidebarStore = useSidebarStore();
     :collapse="!sidebarStore.isOpened()"
     :default-active="activeMenu"
     :uniqueOpened="true"
-    :background-color="variables.menuBg"
-    :text-color="variables.menuText"
-    :active-text-color="variables.menuActiveText"
+    :background-color="variables.getVariables().menuBg"
+    :text-color="variables.getVariables().menuText"
+    :active-text-color="variables.getVariables().menuActiveText"
     router
   >
     <side-bar-item v-for="item in routes" :key="item.path" :route="item" />

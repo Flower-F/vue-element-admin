@@ -11,9 +11,7 @@ export const useThemeStore = defineStore("themeStore", () => {
     setItem(MAIN_COLOR, mainColor.value);
   };
 
-  const getMainColor = () => {
-    return mainColor.value;
-  };
+  const getMainColor = () => mainColor.value;
 
   return {
     setMainColor,

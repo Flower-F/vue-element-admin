@@ -2,20 +2,21 @@
 import NavBar from "./components/NavBar.vue";
 import MainContent from "./components/MainContent.vue";
 import SideBar from "./components/SideBar.vue";
-import variables from "@/styles/variables.module.scss";
 import { useSidebarStore } from "@/stores/sidebar";
+import { useVariablesStore } from "@/stores/variables";
 
-const store = useSidebarStore();
+const sidebarStore = useSidebarStore();
+const variablesStore = useVariablesStore();
 </script>
 
 <template>
   <div
     class="app-container"
-    :class="store.isOpened() ? 'openSidebar' : 'hideSidebar'"
+    :class="sidebarStore.isOpened() ? 'openSidebar' : 'hideSidebar'"
   >
     <side-bar
       class="sidebar-container"
-      :style="{ backgroundColor: variables.menuBg }"
+      :style="{ backgroundColor: variablesStore.getVariables().menuBg }"
     />
     <div class="main-container">
       <div class="fixed-header">
