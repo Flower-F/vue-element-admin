@@ -18,7 +18,7 @@
     overflow: hidden;
 
     .logo-container {
-      margin: 18px 0 12px 0;
+      margin: 18px 0 12px -4px;
       height: 44px;
     }
 
@@ -32,12 +32,13 @@
     }
 
     .svg-icon {
-      margin-right: 16px;
+      margin-right: 10px;
     }
 
     .sub-el-icon {
-      margin-right: 12px;
-      margin-left: -4px;
+      width: 14px;
+      height: 14px;
+      margin-right: 10px;
     }
 
     .el-menu {
@@ -49,7 +50,7 @@
 
   .hideSidebar {
     .sidebar-container {
-      width: 54px !important;
+      width: $hideSideBarWidth !important;
     }
 
     .main-container {

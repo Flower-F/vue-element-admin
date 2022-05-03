@@ -5,6 +5,7 @@ import { Tools } from "@element-plus/icons-vue";
 import HamburgerButton from "../../components/HamburgerButton.vue";
 import BreadCrumb from "../../components/BreadCrumb.vue";
 import LanguageSelect from "@/components/LanguageSelect.vue";
+import ThemeSelector from "./ThemeSelector.vue";
 
 const store = useUserStore();
 
@@ -19,6 +20,8 @@ const logout = () => {
     <hamburger-button class="hamburger-button" />
     <bread-crumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 换肤 -->
+      <theme-selector class="right-menu-item hover-effect" />
       <!-- 国际化 -->
       <language-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
