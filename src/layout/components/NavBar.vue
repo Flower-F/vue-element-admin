@@ -25,7 +25,7 @@ const logout = () => {
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
-            <router-link to="/">
+            <router-link to="/profile">
               <el-dropdown-item>主页</el-dropdown-item>
             </router-link>
             <el-dropdown-item divided @click="logout">
@@ -70,7 +70,6 @@ const logout = () => {
         margin-top: 5px;
         position: relative;
         .el-avatar {
-          --el-avatar-bg-color: none;
           margin-right: 12px;
         }
       }
