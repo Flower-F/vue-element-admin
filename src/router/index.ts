@@ -47,8 +47,8 @@ const privateRoutes: RouteRecordRaw[] = [
   {
     path: "/user",
     name: "User",
-    redirect: "user/manager",
     component: Layout,
+    redirect: "/user/manage",
     meta: {
       title: "user",
       icon: "personnel",

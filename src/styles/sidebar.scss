@@ -17,6 +17,11 @@
     z-index: 1001;
     overflow: hidden;
 
+    .logo-container {
+      margin-top: 12px;
+      height: 44px;
+    }
+
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out,
         0s padding-right ease-in-out;

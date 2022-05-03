@@ -3,6 +3,7 @@ import {} from "vue";
 import { useUserStore } from "../../stores/user";
 import { Tools } from "@element-plus/icons-vue";
 import HamburgerButton from "../../components/HamburgerButton.vue";
+import BreadCrumb from "../../components/BreadCrumb.vue";
 
 const store = useUserStore();
 
@@ -15,6 +16,7 @@ const logout = () => {
   <div class="navbar">
     <!-- 汉堡 -->
     <hamburger-button class="hamburger-button" />
+    <bread-crumb class="breadcrumb-container" />
     <div class="right-menu">
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -56,6 +58,10 @@ const logout = () => {
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
     }
+  }
+
+  .breadcrumb-container {
+    float: left;
   }
 
   .right-menu {
