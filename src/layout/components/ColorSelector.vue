@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { DEFAULT_COLOR, MAIN_COLOR } from "@/constants";
 import { useThemeStore } from "@/stores/theme";
+import { generateNewStyles, writeNewStyles } from "@/utils/theme";
 import { ref, defineEmits } from "vue";
 
 defineProps<{ modelValue: boolean }>();
@@ -35,7 +36,9 @@ const close = () => {
 };
 
 const store = useThemeStore();
-const confirm = () => {
+const confirm = async () => {
+  const newStyles = await generateNewStyles(mainColor.value);
+  writeNewStyles(newStyles);
   store.setMainColor(mainColor.value);
   close();
 };

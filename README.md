@@ -21,6 +21,10 @@
 - 整体布局组件 ✔️
 - 动态面包屑组件 ✔️
 - 语言国际化 ✔️
+  - Element Plus 语言国际化 ✔️
+  - 非 Element Plus 语言国际化 ✔️
+- 动态换肤
+  - Element Plus 动态换肤 ✔️
 
 ## Project Setup
 
