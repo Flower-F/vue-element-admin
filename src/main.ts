@@ -12,6 +12,7 @@ import "./styles/index.scss";
 import "virtual:svg-icons-register";
 
 import SvgIcon from "./components/SvgIcon.vue";
+import i18n from "./i18n";
 
 // 路由守卫
 import "./permission";
@@ -22,6 +23,7 @@ app.component("svg-icon", SvgIcon);
 
 app.use(createPinia());
 app.use(router);
+app.use(i18n);
 app.use(ElementPlus);
 
 app.mount("#app");

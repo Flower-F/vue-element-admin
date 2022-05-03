@@ -4,6 +4,7 @@ import { useUserStore } from "../../stores/user";
 import { Tools } from "@element-plus/icons-vue";
 import HamburgerButton from "../../components/HamburgerButton.vue";
 import BreadCrumb from "../../components/BreadCrumb.vue";
+import LanguageSelect from "@/components/LanguageSelect.vue";
 
 const store = useUserStore();
 
@@ -18,6 +19,8 @@ const logout = () => {
     <hamburger-button class="hamburger-button" />
     <bread-crumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 国际化 -->
+      <language-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -78,6 +81,18 @@ const logout = () => {
         .el-avatar {
           margin-right: 12px;
         }
+      }
+    }
+
+    :deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 30px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
       }
     }
   }
