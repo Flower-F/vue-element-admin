@@ -6,7 +6,7 @@ import { ref } from "vue";
 export const useLanguageStore = defineStore("languageStore", () => {
   const language = ref<string>(getItem(LANG) || "zh");
 
-  const setLanguage = (languageValue: string) => {
+  const setLanguage = (languageValue: "zh" | "en") => {
     language.value = languageValue;
   };
 

@@ -12,7 +12,7 @@ const store = useLanguageStore();
 const language = computed(() => store.getLanguage());
 
 const i18n = useI18n();
-const handleSetLanguage = (language: string) => {
+const handleSetLanguage = (language: "zh" | "en") => {
   i18n.locale.value = language;
   store.setLanguage(language);
   ElMessage.success("更新成功");
