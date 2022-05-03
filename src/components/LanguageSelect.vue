@@ -15,7 +15,7 @@ const i18n = useI18n();
 const handleSetLanguage = (language: "zh" | "en") => {
   i18n.locale.value = language;
   store.setLanguage(language);
-  ElMessage.success("更新成功");
+  ElMessage.success(i18n.t("msg.toast.switchLangSuccess"));
 };
 </script>
 

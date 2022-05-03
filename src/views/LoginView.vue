@@ -3,6 +3,8 @@ import { useUserStore } from "@/stores/user";
 import { validatePassword } from "@/utils/loginRules";
 import { ref } from "vue";
 import SvgIcon from "../components/SvgIcon.vue";
+import LanguageSelect from "@/components/LanguageSelect.vue";
+import { useI18n } from "vue-i18n";
 
 const loginForm = ref({
   username: "super-admin",
@@ -10,12 +12,13 @@ const loginForm = ref({
   avatar: "",
 });
 
+const i18n = useI18n();
 const loginRules = ref({
   username: [
     {
       required: true,
       trigger: "blur",
-      message: "用户名为必填项",
+      message: i18n.t("msg.login.usernameRule"),
     },
   ],
   password: [
@@ -63,7 +66,8 @@ const handleLogin = () => {
       :rules="loginRules"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t("msg.login.title") }}</h3>
+        <language-select class="lang-select" />
       </div>
       <!-- 用户名 -->
       <el-form-item prop="username">
@@ -71,7 +75,7 @@ const handleLogin = () => {
           <svg-icon icon="user"></svg-icon>
         </span>
         <el-input
-          placeholder="请输入您的用户名"
+          :placeholder="$t('msg.login.usernameTips')"
           name="username"
           type="text"
           v-model="loginForm.username"
@@ -84,19 +88,21 @@ const handleLogin = () => {
           <svg-icon icon="password" />
         </span>
         <el-input
-          placeholder="请输入您的密码"
+          :placeholder="$t('msg.login.passwordTips')"
           name="password"
           type="password"
           v-model="loginForm.password"
         />
         <span class="show-password">
-          <svg-icon icon="eye"></svg-icon>
+          <svg-icon icon="eye" />
         </span>
       </el-form-item>
 
-      <el-button type="primary" class="login-button" @click="handleLogin"
-        >登录</el-button
-      >
+      <el-button type="primary" class="login-button" @click="handleLogin">
+        {{ $t("msg.login.loginBtn") }}
+      </el-button>
+
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -116,8 +122,7 @@ $cursor: #fff;
   background-color: $bg;
   overflow: hidden;
   .login-form {
-    max-width: 500px;
-    min-width: 400px;
+    width: 500px;
     overflow: hidden;
     :deep(.el-form-item) {
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -159,6 +164,17 @@ $cursor: #fff;
   .title-container {
     position: relative;
 
+    .lang-select {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      background-color: #fff;
+      font-size: 24px;
+      padding: 4px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
     .title {
       font-size: 26px;
       color: $light_gray;
@@ -180,6 +196,12 @@ $cursor: #fff;
   .login-button {
     width: 100%;
     margin-top: 5px;
+  }
+  .tips {
+    color: white;
+    line-height: 20px;
+    font-size: 16px;
+    margin-top: 12px;
   }
 }
 </style>

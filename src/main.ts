@@ -6,6 +6,7 @@ import router from "./router";
 
 import "normalize.css";
 import "./styles/index.scss";
+import "element-plus/theme-chalk/index.css";
 import "virtual:svg-icons-register";
 
 import SvgIcon from "./components/SvgIcon.vue";
@@ -20,10 +21,9 @@ const app = createApp(App);
 
 app.component("svg-icon", SvgIcon);
 
+app.use(i18n);
 app.use(createPinia());
 app.use(router);
-app.use(i18n);
-// app.use(ElementPlus);
 registerElementPlus(app);
 
 app.mount("#app");

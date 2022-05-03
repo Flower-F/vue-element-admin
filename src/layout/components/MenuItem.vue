@@ -2,6 +2,7 @@
 import {} from "vue";
 import { User } from "@element-plus/icons-vue";
 import SvgIcon from "../../components/SvgIcon.vue";
+import { generateTitle } from "@/utils/i18n";
 defineProps<{ title: string; icon: string }>();
 </script>
 
@@ -13,7 +14,7 @@ defineProps<{ title: string; icon: string }>();
   <!-- 非 element icon -->
   <svg-icon v-else :icon="icon" />
 
-  <span>{{ title }}</span>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <style lang="scss" scoped></style>

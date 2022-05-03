@@ -2,6 +2,7 @@
 import { useVariablesStore } from "@/stores/variables";
 import { ref, watch } from "vue";
 import { useRoute, useRouter, type RouteLocationMatched } from "vue-router";
+import { generateTitle } from "@/utils/i18n";
 
 const breadCrumbData = ref<RouteLocationMatched[]>([]);
 const getBreadCrumbData = () => {
@@ -39,11 +40,11 @@ const handleRedirect = (item: RouteLocationMatched) => {
       >
         <!-- 不可点击面包屑 -->
         <span class="no-redirect" v-if="index === breadCrumbData.length - 1">
-          {{ item.meta.title }}
+          {{ generateTitle(item.meta.title as string) }}
         </span>
         <!-- 可点击面包屑 -->
         <span class="redirect" v-else @click="handleRedirect(item)">
-          {{ item.meta.title }}
+          {{ generateTitle(item.meta.title as string) }}
         </span>
       </el-breadcrumb-item>
     </transition-group>

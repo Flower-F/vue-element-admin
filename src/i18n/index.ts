@@ -1,25 +1,27 @@
 import { createI18n } from "vue-i18n";
+import zhLocale from "./lang/zh";
+import enLocale from "./lang/en";
 
 // 定义信息源
 const messages = {
   en: {
     msg: {
-      test: "hello world",
+      ...enLocale,
     },
   },
   zh: {
     msg: {
-      test: "你好世界",
+      ...zhLocale,
     },
   },
 };
 
-// 定义 locale
+// 初始化 locale
 const locale = "zh";
 
 // 创建 i18n 实例
 const i18n = createI18n({
-  legacy: false, // Composition Api
+  legacy: false, // 使用 Composition Api
   globalInjection: true,
   locale,
   messages,
